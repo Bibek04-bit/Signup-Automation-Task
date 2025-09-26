@@ -1,13 +1,34 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 import time
+import unittest
 
-#https://sites.google.com/chromium.org/driver/
-service = Service(executable_path= "chromedriver.exe")
-driver = webdriver.Chrome(service=service)
+class SignUp(unittest.TestCase):
 
-driver.get("https://authorized-partner.netlify.app/login")
+  def setUp(self):
+    self.driver=webdriver.Chrome()
 
-time.sleep(15)
+  def test_sign_up(self):
+    driver = self.driver
+    try:
+        driver.get("https://authorized-partner.netlify.app/login")
 
-driver.quit()
+    except Exception as ex:
+       print(ex)
+
+    else:
+         driver.find_element(By.XPATH,"/html/body/div[3]/div[1]/div[2]/form/div[3]/div/a").click()
+         time.sleep(5)
+         driver.find_element(By.XPATH, '//*[@id="remember"]').click()
+         time.sleep(5)
+         driver.find_element(By.XPATH, '/html/body/div[3]/div[4]/div[3]/a/button').click()
+         time.sleep(5)
+
+
+  def tearDown(self):
+       self.driver.quit()
+
+if __name__=="__main__":
+    unittest.main()
+           
