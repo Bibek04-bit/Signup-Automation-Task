@@ -150,7 +150,7 @@ class SignUp(unittest.TestCase):
                 EC.presence_of_element_located((By.NAME, 'agency_website'))
             )
             AgencyWeb.clear()
-            AgencyWeb.send_keys(f'https://testsite{int(time.time())}.com')
+            AgencyWeb.send_keys(f'testsite{int(time.time())}.com')
             time.sleep(2)
 
             AgencyAddr = WebDriverWait(driver, 20).until(
@@ -180,6 +180,35 @@ class SignUp(unittest.TestCase):
             )
             country_option.click()
             time.sleep(2)
+
+            random = WebDriverWait(driver, 20).until(
+                EC.element_to_be_clickable((By.XPATH, '/html/body/div[3]/div[4]/div/div/div/div[2]/form/div[3]/div[2]/button'))
+            )
+            random.click()
+            time.sleep(2)
+
+
+            Nxt = WebDriverWait(driver, 20).until(
+                EC.element_to_be_clickable((By.XPATH, '/html/body/div[3]/div[4]/div/div/div/div[2]/form/div[4]/button[2]'))
+            )
+            Nxt.click()
+            time.sleep(2)
+
+            # Wait for the Experience button by visible text
+            Exp = WebDriverWait(driver, 20).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[contains(text(), "Experience")]'))
+            )
+            Exp.click()
+            time.sleep(2)
+
+            # Wait for the selection field by placeholder or label
+            Sel = WebDriverWait(driver, 20).until(
+                EC.element_to_be_clickable((By.XPATH, '//input[contains(@placeholder, "Select")]'))
+            )
+            Sel.click()
+            time.sleep(2)
+
+
 
 
 
